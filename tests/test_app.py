@@ -3,8 +3,6 @@ import unittest
 import json
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
-import sys
-sys.path.append("..")
 from app import create_app
 
 
@@ -258,3 +256,7 @@ class EndpointTestCase(unittest.TestCase):
             ]
         )
         self.assertEqual(res.status_code, 404)
+
+
+if __name__ == '__main__':
+    unittest.main()
