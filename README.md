@@ -156,10 +156,12 @@ To run the tests, run
 ```
 dropdb casting_agency
 createdb casting_agency
+flask db upgrade
 psql casting_agency < data.sql
 python3 tests/test_app.py
 dropdb casting_agency
 createdb casting_agency
+flask db upgrade
 psql casting_agency < data.sql
 python3 tests/test_roles.py
 ```

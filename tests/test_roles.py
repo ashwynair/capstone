@@ -2,7 +2,6 @@ import os
 import unittest
 import json
 from flask_sqlalchemy import SQLAlchemy
-from dotenv import load_dotenv
 from app import create_app
 
 
@@ -88,6 +87,10 @@ class EndpointTestCase(unittest.TestCase):
         """Test for retrieving questions with assistant token"""
         director_token = os.getenv('director_token')
         test_delete_actor_id = os.getenv('test_delete_actor_id')
+        print("\n")
+        print(director_token)
+        print(test_delete_actor_id)
+        print("\n")
         res = self.client().delete(
             '/api/actors/' + str(test_delete_actor_id),
             headers=[
@@ -147,3 +150,7 @@ class EndpointTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 200)
         data = json.loads(res.data)
         self.assertTrue(data["success"])
+
+
+if __name__ == '__main__':
+    unittest.main()
