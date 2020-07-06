@@ -1,3 +1,6 @@
+pip3 install -r requirements.txt
+pip3 install psycopg2-binary
+pip3 install python-jose
 export SECRET='secret-key'
 export AUTH0_DOMAIN='avn-casting-agency.eu.auth0.com'
 export API_AUDIENCE='casting_agency'

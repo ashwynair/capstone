@@ -1,4 +1,4 @@
-# Full Stack Trivia API Backend
+# Capstone Project - Casting Agency
 
 ## Getting Started
 
@@ -48,7 +48,8 @@ Ensure you are working using your created virtual environment.
 To run the server, execute:
 
 ```
-sh setup.sh
+chmod +x setup.sh
+./setup.sh
 python3 run.py
 ```
 
