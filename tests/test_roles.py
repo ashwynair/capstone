@@ -12,7 +12,6 @@ class EndpointTestCase(unittest.TestCase):
     def setUp(self):
         self.app = create_app()
         self.client = self.app.test_client
-        load_dotenv('../.env')
         # binds the app to the current context
         with self.app.app_context():
             self.db = SQLAlchemy()
