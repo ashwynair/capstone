@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 11.5
--- Dumped by pg_dump version 11.5
+-- Dumped from database version 12.3
+-- Dumped by pg_dump version 12.3
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -18,7 +18,7 @@ SET row_security = off;
 
 SET default_tablespace = '';
 
-SET default_with_oids = false;
+SET default_table_access_method = heap;
 
 --
 -- Name: Actors; Type: TABLE; Schema: public; Owner: postgres
@@ -198,6 +198,7 @@ COPY public."Roles" (role_id, actor_id, movie_id, role_desc) FROM stdin;
 --
 
 COPY public.alembic_version (version_num) FROM stdin;
+340c9e9298e8
 f77f759edb07
 \.
 
