@@ -49,7 +49,7 @@ To run the server, execute:
 
 ```
 chmod +x setup.sh
-./setup.sh
+source ./setup.sh
 python3 run.py
 ```
 
@@ -158,10 +158,14 @@ dropdb casting_agency
 createdb casting_agency
 flask db upgrade
 psql casting_agency < data.sql
+chmod +x setup.sh
+source ./setup.sh
 python3 tests/test_app.py
 dropdb casting_agency
 createdb casting_agency
 flask db upgrade
 psql casting_agency < data.sql
+chmod +x setup.sh
+source ./setup.sh
 python3 tests/test_roles.py
 ```
