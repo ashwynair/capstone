@@ -7,7 +7,7 @@ from app import create_app
 
 
 class EndpointTestCase(unittest.TestCase):
-    """This class represents the casting agency test case"""
+    """This class application test case of endpoints"""
 
     def setUp(self):
         self.app = create_app()
@@ -21,7 +21,7 @@ class EndpointTestCase(unittest.TestCase):
         pass
 
     def test_get_actors_by_assistant(self):
-        """Test for retrieving questions with assistant token"""
+        """Test for getting actors by assistant"""
         assistant_token = os.getenv('assistant_token')
         res = self.client().get(
             '/api/actors',
@@ -35,7 +35,7 @@ class EndpointTestCase(unittest.TestCase):
         self.assertTrue(data["success"])
 
     def test_401_get_actors(self):
-        """Test for retrieving questions with assistant token"""
+        """Test authorization error for getting actors without token"""
         res = self.client().get(
             '/api/actors',
             headers=[
@@ -45,7 +45,7 @@ class EndpointTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 401)
 
     def test_get_movies_by_assistant(self):
-        """Test for retrieving questions with assistant token"""
+        """Test getting movies with assistant token"""
         assistant_token = os.getenv('assistant_token')
         res = self.client().get(
             '/api/movies',
@@ -59,7 +59,7 @@ class EndpointTestCase(unittest.TestCase):
         self.assertTrue(data["success"])
 
     def test_401_get_movies(self):
-        """Test for retrieving questions with assistant token"""
+        """Test authorization error for getting movies without token"""
         res = self.client().get(
             '/api/movies',
             headers=[
@@ -69,7 +69,7 @@ class EndpointTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 401)
 
     def test_add_actors_by_director(self):
-        """Test for retrieving questions with assistant token"""
+        """Test adding actors to db by director"""
         director_token = os.getenv('director_token')
         res = self.client().post(
             '/api/actors',
@@ -88,7 +88,9 @@ class EndpointTestCase(unittest.TestCase):
         self.assertTrue(data["success"])
 
     def test_422_age_not_provided_add_actor(self):
-        """Test for retrieving questions with assistant token"""
+        """
+        Test error adding actors to db by director without all data points required
+        """
         director_token = os.getenv('director_token')
         res = self.client().post(
             '/api/actors',
@@ -104,7 +106,7 @@ class EndpointTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 422)
 
     def test_add_movies_by_exec_producer(self):
-        """Test for retrieving questions with assistant token"""
+        """Test adding movies"""
         exec_prod_token = os.getenv('exec_prod_token')
         res = self.client().post(
             '/api/movies',
@@ -122,7 +124,7 @@ class EndpointTestCase(unittest.TestCase):
         self.assertTrue(data["success"])
 
     def test_422_title_not_provided_add_movie(self):
-        """Test for retrieving questions with assistant token"""
+        """Test error adding movies without all data"""
         exec_prod_token = os.getenv('exec_prod_token')
         res = self.client().post(
             '/api/movies',
@@ -137,7 +139,7 @@ class EndpointTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 422)
 
     def test_delete_actors_by_director(self):
-        """Test for retrieving questions with assistant token"""
+        """Delete actor"""
         director_token = os.getenv('director_token')
         test_delete_actor_id = os.getenv('test_delete_actor_id')
         res = self.client().delete(
@@ -152,7 +154,7 @@ class EndpointTestCase(unittest.TestCase):
         self.assertTrue(data["success"])
 
     def test_404_delete_nonexistent_actor_by_director(self):
-        """Test for retrieving questions with assistant token"""
+        """Test error delete non-existent actor"""
         director_token = os.getenv('director_token')
         res = self.client().delete(
             '/api/actors/' + str(99),
@@ -164,7 +166,7 @@ class EndpointTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 404)
 
     def test_delete_movies_by_exec_producer(self):
-        """Test for retrieving questions with assistant token"""
+        """Delete movie"""
         exec_prod_token = os.getenv('exec_prod_token')
         test_delete_movie_id = os.getenv('test_delete_movie_id')
         res = self.client().delete(
@@ -179,7 +181,7 @@ class EndpointTestCase(unittest.TestCase):
         self.assertTrue(data["success"])
 
     def test_404_delete_nonexistent_movie_exec_producer(self):
-        """Test for retrieving questions with assistant token"""
+        """Test error delete non-existent movie"""
         exec_prod_token = os.getenv('exec_prod_token')
         res = self.client().delete(
             '/api/movies/' + str(99),
@@ -191,7 +193,7 @@ class EndpointTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 404)
 
     def test_update_actor_by_exec_producer(self):
-        """Test for retrieving questions with assistant token"""
+        """Test update actor"""
         exec_prod_token = os.getenv('exec_prod_token')
         test_patch_actor_id = os.getenv('test_patch_actor_id')
         res = self.client().patch(
@@ -209,7 +211,7 @@ class EndpointTestCase(unittest.TestCase):
         self.assertTrue(data["success"])
 
     def test_404_update_nonexistent_actor_exec_producer(self):
-        """Test for retrieving questions with assistant token"""
+        """Test error updating non-existent actor"""
         exec_prod_token = os.getenv('exec_prod_token')
         res = self.client().patch(
             '/api/movies/' + str(99),
@@ -224,7 +226,7 @@ class EndpointTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 404)
 
     def test_update_movie_by_exec_producer(self):
-        """Test for retrieving questions with assistant token"""
+        """Test update movie"""
         exec_prod_token = os.getenv('exec_prod_token')
         test_patch_movie_id = os.getenv('test_patch_movie_id')
         res = self.client().patch(
@@ -242,7 +244,7 @@ class EndpointTestCase(unittest.TestCase):
         self.assertTrue(data["success"])
 
     def test_404_update_nonexistent_movie_exec_producer(self):
-        """Test for retrieving questions with assistant token"""
+        """Test error updating non-existent movie"""
         exec_prod_token = os.getenv('exec_prod_token')
         res = self.client().patch(
             '/api/movies/' + str(99),
