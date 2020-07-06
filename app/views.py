@@ -14,8 +14,10 @@ view = Blueprint("view", __name__)
 def get_actors(*args, **kwargs):
     """
     Requires get:actors permissions
-    Endpoint for all assistants, directors and executive producers to retrieve a list of actors
-    :return: Status code 200 and json {"success": True, "actors": actors} where actors is the list of actors,
+    Endpoint for all assistants, directors and
+    executive producers to retrieve a list of actors
+    :return: Status code 200 and json {"success": True,
+    "actors": actors} where actors is the list of actors,
     or an appropriate status code indicating reason for failure
     """
     actors = list(map(Actors.details, Actors.query.all()))
@@ -30,8 +32,10 @@ def get_actors(*args, **kwargs):
 def get_movies(*args, **kwargs):
     """
     Requires get:movies permissions
-    Endpoint for all assistants, directors and executive producers to retrieve a list of movies
-    :return: Status code 200 and json {"success": True, "movies": movies} where movies is the list of movies,
+    Endpoint for all assistants, directors and executive
+    producers to retrieve a list of movies
+    :return: Status code 200 and json {"success": True,
+    "movies": movies} where movies is the list of movies,
     or an appropriate status code indicating reason for failure
     """
     movies = list(map(Movies.details, Movies.query.all()))
@@ -47,8 +51,9 @@ def add_actors(*args, **kwargs):
     """
     Requires post:actors permissions
     Endpoint for directors and executive producers to create new actors
-    :return: Status code 200 and json {"success": True, "actor": actor} where actor
-    is the details of the new actor that was added to the database
+    :return: Status code 200 and json {"success": True,
+    "actor": actor} where actor is the details of
+    the new actor that was added to the database
     """
     data = dict(request.get_json())
     if not all(key in data.keys() for key in ("name", "age", "gender")):
@@ -83,8 +88,9 @@ def add_movies(*args, **kwargs):
     """
     Requires post:movies permissions
     Endpoint for directors and executive producers to create new movies
-    :return: Status code 200 and json {"success": True, "movie": movie} where movie
-    is the details of the new movie that was added to the database
+    :return: Status code 200 and json {"success": True,
+    "movie": movie} where movie is the details of the
+    new movie that was added to the database
     """
     data = dict(request.get_json())
     if not all(key in data.keys() for key in ("title", "release_date")):
@@ -92,7 +98,10 @@ def add_movies(*args, **kwargs):
 
     release_date = ''
     try:
-        release_date = datetime.strptime(data.get("release_date"), standard_date_format)
+        release_date = datetime.strptime(
+            data.get("release_date"),
+            standard_date_format
+        )
     except ValueError:
         abort(422)
 
@@ -126,7 +135,8 @@ def delete_actors(*args, **kwargs):
     Deletes the corresponding row for <actor_id>
     Requires the 'delete:actors' permission
     :param kwargs: Must have actor_id key-value pair for id of actor
-    :return: Status code 200 and json {"success": True, "delete": id} where id is the id of the deleted record
+    :return: Status code 200 and json {"success": True,
+    "delete": id} where id is the id of the deleted record
     or appropriate status code indicating reason for failure
     """
     actor_id = kwargs.get("actor_id", None)
@@ -161,7 +171,8 @@ def delete_movies(*args, **kwargs):
     Deletes the corresponding row for <movie_id>
     Requires the 'delete:movies' permission
     :param kwargs: Must have movie_id key-value pair for id of movie
-    :return: Status code 200 and json {"success": True, "delete": id} where id is the id of the deleted record
+    :return: Status code 200 and json {"success": True,
+    "delete": id} where id is the id of the deleted record
     or appropriate status code indicating reason for failure
     """
     movie_id = kwargs.get("movie_id", None)
@@ -197,7 +208,8 @@ def update_actors(*args, **kwargs):
     Requires the 'patch:actors' permission
     Contains the actor.details() data representation in response
     :param kwargs: Has actor_id key-value pair for id of drink
-    :return: Status code 200 and JSON {"success": True, "actor": actor}, where actor is an object containing only
+    :return: Status code 200 and JSON {"success": True,
+    "actor": actor}, where actor is an object containing only
     the updated actor or appropriate status code indicating reason for failure
     """
     actor_id = kwargs.get("actor_id", None)
@@ -246,7 +258,8 @@ def update_movies(*args, **kwargs):
     Requires the 'patch:movies' permission
     Contains the movie.details() data representation in response
     :param kwargs: Has movie_id key-value pair for id of drink
-    :return: Status code 200 and JSON {"success": True, "movie": movie}, where movie is an object containing only
+    :return: Status code 200 and JSON {"success": True,
+    "movie": movie}, where movie is an object containing only
     the updated movie or appropriate status code indicating reason for failure
     """
     movie_id = kwargs.get("movie_id", None)
@@ -267,7 +280,10 @@ def update_movies(*args, **kwargs):
             movie.title = title
         if release_date:
             try:
-                release_date = datetime.strptime(data.get("release_date"), standard_date_format)
+                release_date = datetime.strptime(
+                    data.get("release_date"),
+                    standard_date_format
+                )
                 movie.release_date = release_date
             except ValueError:
                 abort(422)
