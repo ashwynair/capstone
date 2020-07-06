@@ -8,7 +8,9 @@ DEBUG = True
 
 # Connect to the database
 
+if os.environ.get('DATABASE_URL') is None:
+    SQLALCHEMY_DATABASE_URI = 'postgres://postgres@localhost:5432/casting_agency'
+else:
+    SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
 
-# TODO IMPLEMENT DATABASE URL
-SQLALCHEMY_DATABASE_URI = 'postgres://postgres@localhost:5432/casting_agency'
 SQLALCHEMY_TRACK_MODIFICATIONS = True
