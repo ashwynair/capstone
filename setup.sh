@@ -5,3 +5,5 @@ export PRODUCER_TOKEN='eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Il9xaGxXVUl2S
 export AUTH0_DOMAIN='avn-casting-agency.eu.auth0.com'
 export API_AUDIENCE='casting_agency'
 export ALGORITHMS=['RS256']
+export FLASK_APP=app
+export PYTHONPATH='.'
